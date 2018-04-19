@@ -24,10 +24,10 @@ The multi sig wallet is a contract with a number of signeres and a predefined mi
 
 The source code is `contracts/PlayCoinMultiSigWallet.sol`.
 
-## tests
+## Tests
 
 There are a number of basic senario tests for PlayCoin and the PlayCoinMultiSigWallet under the `test` directory. 
 
-## Question
+## Questions
 
 We will be very happy to hear from you. Please create an issue on the contracts github repository(https://github.com/playcoindev/contracts/issues), we will appreciate you very deeply.
