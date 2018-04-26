@@ -289,7 +289,7 @@ contract PlayCoin is StandardToken {
    */
   function transferFrom(address _from, address _to, uint256 _value) public returns (bool) {
     require(_value <= balances[_from].sub(reserves[_from]));
-    return super.transferFrom(_from,_to,_vaule);
+    return super.transferFrom(_from,_to,_value);
   }
 }
 
