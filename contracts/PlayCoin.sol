@@ -12,9 +12,28 @@ contract PlayCoin is StandardToken {
 
   uint noOfTokens = 1000000000; // 1,000,000,000 (1B)
 
-  address vault; // address of playcoin vault multi signature contract to protect privileged operations
-  address owner; // address of playcoin owner multi signature contract to protect privileged operations
-  address admin; // can set reserve
+  // Address of playcoin vault (a PlayCoinMultiSigWallet contract)
+  // The vault will have all the playcoin issued and the operation
+  // on its token will be protected by multi signing.
+  // In addtion, vault can recall(transfer back) the reserved amount
+  // from some address.
+  address vault;
+
+  // Address of playcoin owner (a PlayCoinMultiSigWallet contract)
+  // The owner can change admin and vault address, but the change operation
+  // will be protected by multi signing.
+  address owner;
+
+  // Address of playcoin admin (a PlayCoinMultiSigWallet contract)
+  // The admin can change reserve. The reserve is the amount of token
+  // assigned to some address but not permitted to use.
+  // Once the signers of the admin agree with removing the reserver,
+  // they can change the reserve to zero to permit the user to use all reserved
+  // amount. So in effect, reservation will postpone the use of some tokens
+  // being used until all stakeholders agree with giving permission to use that
+  // token to the token owner.
+  // All admin operation will be protected by multi signing.
+  address admin;
 
   event OwnerChanged(address indexed previousOwner, address indexed newOwner);
   event VaultChanged(address indexed previousVault, address indexed newVault);
@@ -22,7 +41,7 @@ contract PlayCoin is StandardToken {
   event ReserveChanged(address indexed _address, uint amount);
   event Recalled(address indexed from, uint amount);
 
-  // for debugging. comment out in production
+  // for debugging
   event MsgAndValue(string message, bytes32 value);
 
   /**
@@ -142,6 +161,8 @@ contract PlayCoin is StandardToken {
    * @dev change the amount of reserved token
    *    reserve should be less than or equal to the current token balance
    *
+   *    Refer to the comment on the admin if you want to know more.
+   *
    * @param _address the target address whose token will be frozen for future use
    * @param reserve  the amount of reserved token
    *
@@ -231,6 +252,8 @@ contract PlayCoin is StandardToken {
 
   /**
    * @dev transfer a part of reserved amount to the vault
+   *
+   *    Refer to the comment on the vault if you want to know more.
    *
    * @param _from the address from which the reserved token will be taken
    * @param _amount the amount of token to be taken

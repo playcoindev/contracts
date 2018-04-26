@@ -18,6 +18,10 @@ Play Coin is a type of QRC20 token with the symbol "PLY". It inherits all the fu
 
 The source code is `contracts/PlayCoin.sol`.
 
+#### Reserve
+
+Playcoin introduces the concepts of reserve, which can be used if you want to assign some amount of playcoins to an address but want for that address not to spend the playcoins assigned. For example, the gamehub can assign some playcoins for some the the stakeholders with some restriction on excercising their right to spend the playcoins. Reserved playcoin will be included in the balance of the address, but that address cannot spend the playcoin until the admin(which is a multisig vault to protect the privilleged operation) to reduce or remove the reservation.
+
 ### Play Coin Multi Sig Wallet Contract
 
 The multi sig wallet is a contract with a number of signeres and a predefined minimum number of sign to confirm the execution of a transaction. One of the signer can request a transaction on the playcoin contract or he/she can issue any other transaction on other contracts. But the transaction will not run until there are more than the minimum number of singers who signed to the requested transaction. Once the number of sign on the transaction reaches the minumum number, the Play Coin Multi Sig Wallet contract will run the transaction.
