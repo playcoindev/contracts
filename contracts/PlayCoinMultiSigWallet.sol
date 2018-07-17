@@ -30,7 +30,7 @@ contract PlayCoinMultiSigWallet {
     event DebugMsg1A(string msg, address value1);
 
     /*  Constants  */
-    uint constant FOREVER = 99999999999; // Tuesday, 27 June 3730 2:45:55 AM (
+    uint constant FOREVER = 99999999999; // Tuesday, 27 June 3730 2:45:55 AM
     uint constant MAX_OWNER_COUNT = 50;
 
     /*  Storage  */
