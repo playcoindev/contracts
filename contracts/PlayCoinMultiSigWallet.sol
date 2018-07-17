@@ -44,7 +44,7 @@ contract PlayCoinMultiSigWallet {
         uint expiry;
     }
 
-    using PlayCoinSafeMath for uint256;
+    using PlayCoinSafeMath for uint8;
     mapping(address => bool) public signerMap; // instead of iterating array, we will use this to check signer
     mapping(uint16 => TXRequest) public requestMap;
     mapping(uint16 => address[]) public requestSignMap;
@@ -180,7 +180,7 @@ contract PlayCoinMultiSigWallet {
     /**
       * @dev function to request a TX (i.e. transaction) to be signed and executed afterwards
       *
-      * @param _contractAddr the contract address to run
+      * @param _contractAddress the contract address to run
       * @param _expiry when this TX will be expired (unit: secs after the UNIX epoch)
       * @param _abiData abi encoded function call data (i.e. encoded function name and parameters)
       * @param _description description to be stored in the TX structure
@@ -250,7 +250,7 @@ contract PlayCoinMultiSigWallet {
             emit TXExecuted(txid);
             return true;
         } else {
-            request.excuted = false;
+            request.executed = false;
             emit TXExecutionFailed(txid);
             return false;
         }
@@ -366,7 +366,7 @@ contract PlayCoinMultiSigWallet {
         emit TXRejected(txid, msg.sender);
 
         // if rejected enough, run the transfer
-        if (nRejected > ((uint8)(signers.length)).sub(requiredNoOfSign)) {
+        if (nRejected > uint8(signers.length).sub(requiredNoOfSign)) {
             request.cancelled = true;
             emit TXCancelled(txid);
         }
@@ -397,7 +397,7 @@ contract PlayCoinMultiSigWallet {
     isSigner(_signer)
     returns (bool)
     {
-        uint8 l = signers.length;
+        uint8 l = uint8(signers.length);
 
         // The number of signer cannot be less than the required number of signs
         if (l == requiredNoOfSign) {

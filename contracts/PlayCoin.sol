@@ -145,14 +145,14 @@ contract PlayCoin is StandardToken {
      *    Refer to the comment on the admin if you want to know more.
      *
      * @param _address the target address whose token will be frozen for future use
-     * @param reserve  the amount of reserved token
+     * @param _reserve  the amount of reserved token
      *
      */
     function setReserve(address _address, uint _reserve) public onlyAdmin {
         require(_reserve <= totalSupply_);
         require(_address != address(0));
 
-        reserves[_address] = reserve;
+        reserves[_address] = _reserve;
         emit ReserveChanged(_address, _reserve);
     }
 
