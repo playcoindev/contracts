@@ -38,9 +38,9 @@ We will be very happy to hear from you. Please create an issue on the contracts 
 
 # Revision History
 
-## Version 1.0.0(Initial) 2019-4-19
+## Version 1.0.0(Initial) 2018-4-19
 
-## Revised 2019-7-17
+## Revised 2018-7-17
 
 Based on the audit report, we revised the PlayCoinMultiSigWallet.sol.
 
