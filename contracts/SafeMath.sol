@@ -6,7 +6,7 @@ pragma solidity ^0.4.24;
  */
 library SafeMath {
 
-    function sub(uint8 a, uint8 b) internal constant returns (uint8) {
+    function sub(uint8 a, uint8 b) internal view returns (uint8) {
         assert(b <= a);
         return a - b;
     }
