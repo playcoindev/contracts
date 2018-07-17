@@ -1,7 +1,7 @@
 pragma solidity ^0.4.24;
 
 import "./PlayCoin.sol";
-import "./SafeMath.sol";
+import "./PlayCoinSafeMath.sol";
 
 /**
  * @title PlayCoin Multi Signature contract
@@ -44,7 +44,7 @@ contract PlayCoinMultiSigWallet {
         uint expiry;
     }
 
-    using SafeMath for uint256;
+    using PlayCoinSafeMath for uint256;
     mapping(address => bool) public signerMap; // instead of iterating array, we will use this to check signer
     mapping(uint16 => TXRequest) public requestMap;
     mapping(uint16 => address[]) public requestSignMap;
