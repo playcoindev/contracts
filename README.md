@@ -35,3 +35,16 @@ There are a number of basic senario tests for PlayCoin and the PlayCoinMultiSigW
 ## Questions
 
 We will be very happy to hear from you. Please create an issue on the contracts github repository(https://github.com/playcoindev/contracts/issues), we will appreciate you very deeply.
+
+# Revision History
+
+## Version 1.0.0(Initial) 2019-4-19
+
+## Revised 2019-7-17
+
+Based on the audit report, we revised the PlayCoinMultiSigWallet.sol.
+
+- Owner control: owener cannot run the signer change functions any more. Those functions can be called only using the multisign contract itself by registering TX and signing by signers.
+- Costly loop: we removed the (potentially) expensive loop. The intention behind the (former costly loop) was to prevent deletion of signer when there are pending TX. But the cost is much bigger than the benefit in this case. The singer can register same TX again to run the pending(and now unexecutable) TX.
+- Unchecked Math: we added value check for the subtraction.
+- other low risk items: we removed almost every warnings per the tool’s report.
