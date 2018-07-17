@@ -424,8 +424,8 @@ contract PlayCoinMultiSigWallet {
                 emit DebugMsg1A("moved", signers[i - 1]);
             }
         }
-        signers.length--;
         // decrease array length
+        signers.length--;
         signerMap[_signer] = false;
         emit SignerRemoved(_signer);
         return true;
